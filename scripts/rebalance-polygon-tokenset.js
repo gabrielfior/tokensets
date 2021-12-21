@@ -3,6 +3,7 @@
 // rebalance - put everything in USDC
 const rebalance_utils = require("@setprotocol/index-rebalance-utils/dist/index-rebalances/utils/rebalanceLib.js");
 
+
 task("rebalance", "Rebalances set", async (taskArgs, hre) => {
 
   let setTokenAddress = "0xe33b2d6b288c749431c9c955093bb0d50365f473";
@@ -44,19 +45,19 @@ task("rebalance", "Rebalances set", async (taskArgs, hre) => {
     'WETH': {
       address: strategyInfo['WETH'].address,
       price: hre.ethers.utils.parseUnits("4000.0", "ether"), // 18 decimal market price in USD, we source these from coingecko
-      decimals: hre.ethers.BigNumber.from(18), // ex: 6
+      decimals: hre.ethers.BigNumber.from(10).pow(18), // exponentiated decimals
       maxTradeSize: hre.ethers.utils.parseUnits("10000.0", "ether") // you can set this to a large number, it won't matter in your case
     },
     'USDC': {
       address: strategyInfo['USDC'].address,
       price: hre.ethers.utils.parseUnits("47000.0", "ether"), // 18 decimal market price in USD, we source these from coingecko
-      decimals: hre.ethers.BigNumber.from(6), // ex: 6
+      decimals: hre.ethers.BigNumber.from(10).pow(6),
       maxTradeSize: hre.ethers.utils.parseUnits("10000.0", "ether") // you can set this to a large number, it won't matter in your case
     },
     'WBTC': {
       address: strategyInfo['WBTC'].address,
       price: hre.ethers.BigNumber.from('12345678911121314'), // 18 decimal market price in USD, we source these from coingecko
-      decimals: hre.ethers.BigNumber.from(8), // ex: 6
+      decimals: hre.ethers.BigNumber.from(10).pow(8),
       maxTradeSize: hre.ethers.utils.parseUnits("10000.0", "ether") // you can set this to a large number, it won't matter in your case
     },
   }
